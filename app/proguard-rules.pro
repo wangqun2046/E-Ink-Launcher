@@ -15,7 +15,7 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
--keep public class cn.modificator.launcher.R$*{
+-keep public class info.wangqun.launcher.R$*{
     public static final int *;
 }
 -keep class org.apache.** {*;}

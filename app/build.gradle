@@ -1,36 +1,27 @@
 apply plugin: 'com.android.application'
-apply from: '../config.gradle'
 
 android {
     signingConfigs {
         config {
-            keyAlias release.keyAlias
-            keyPassword release.keyPassword
-            storeFile release.storeFile
-            storePassword release.storePassword
+            keyAlias "wangqun@app"
+            keyPassword "Wq181116"
+            storeFile file("~/Developer/wangqun.app.key")
+            storePassword "App181116"
         }
     }
     compileSdkVersion 28
     buildToolsVersion '28.0.3'
     defaultConfig {
-        applicationId "cn.modificator.launcher"
-        minSdkVersion 14
+        applicationId "net.xinhuamm.mainclient"
+        minSdkVersion 21
         targetSdkVersion 28
-        versionCode 16
-        versionName "0.1.4"
+        versionCode 1024
+        versionName "0.1.5"
         signingConfig signingConfigs.config
     }
     buildTypes {
         release {
             debuggable false
-            zipAlignEnabled true
-            minifyEnabled true
-            shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.config
-        }
-        debug {
-            debuggable true
             zipAlignEnabled true
             minifyEnabled true
             shrinkResources true
@@ -62,14 +53,6 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'androidx.core:core:1.0.0'
-    implementation 'androidx.documentfile:documentfile:1.0.0'
-    implementation 'org.apache.ftpserver:ftplet-api:1.1.0'
-    implementation 'org.apache.ftpserver:ftpserver-core:1.1.0'
+    implementation 'androidx.core:core:1.0.1'
+    implementation 'androidx.fragment:fragment:1.0.0'
 }
-/*
-android.applicationVariants.all { variant ->
-    variant.outputs.all {
-        outputFileName = "E-Ink Launcher_${variant.versionName}.apk"
-    }
-}*/

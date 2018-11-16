@@ -24,7 +24,7 @@
                 android:layout_height="0.1dp"
                 android:layout_weight="1" />
 
-            <cn.modificator.launcher.widgets.RatioImageView
+            <info.wangqun.launcher.widgets.RatioImageView
                 android:id="@+id/appImage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -40,16 +40,13 @@
                 android:layout_weight="1" />
         </LinearLayout>
 
-        <cn.modificator.launcher.widgets.ObserverFontTextView
+        <info.wangqun.launcher.widgets.ObserverFontTextView
             android:id="@+id/appName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textColor="#000000"
-            android:maxLines="2"
+            android:textColor="@android:color/black"
             android:textSize="30sp" />
-        <!--android:singleLine="true"-->
-        <!--10sp-->
     </LinearLayout>
 
     <LinearLayout
@@ -61,8 +58,7 @@
         android:orientation="horizontal"
         android:visibility="invisible">
 
-
-        <cn.modificator.launcher.widgets.RatioImageView
+        <info.wangqun.launcher.widgets.RatioImageView
             android:id="@+id/menu_delete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -70,15 +66,15 @@
             android:background="@drawable/border_half_white_1dp"
             android:scaleType="centerInside"
             android:src="@drawable/smartbar_delete"
-            android:tint="#000000" />
+            android:tint="@android:color/black" />
 
         <View
             android:layout_width="1dp"
             android:layout_height="fill_parent"
-            android:background="#000000"
+            android:background="@android:color/black"
             android:visibility="gone" />
 
-        <cn.modificator.launcher.widgets.RatioImageView
+        <info.wangqun.launcher.widgets.RatioImageView
             android:id="@+id/menu_hide"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -86,7 +82,7 @@
             android:background="@drawable/border_half_white_1dp"
             android:scaleType="centerInside"
             android:src="@drawable/app_visible_status"
-            android:tint="#000000" />
+            android:tint="@android:color/black" />
 
     </LinearLayout>
 </FrameLayout>

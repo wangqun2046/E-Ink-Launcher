@@ -43,7 +43,7 @@
     <string name="wifi_status_closing">WiFi 正在关闭</string>
     <string name="wifi_status_opening">WiFi 正在开启</string>
     <string name="wifi_status_on">WiFi 已开启</string>
-    <string name="wifi_status_connected">WiFi 已连接:%s</string>
+    <string name="wifi_status_connected">WiFi 已连接</string>
     <string name="wifi_status_connecting">WiFi 连接中</string>
     <string name="wifi_status_disconnected">WiFi 已断开</string>
     <string name="wifi_status_disconnecting">WiFi 断开中</string>

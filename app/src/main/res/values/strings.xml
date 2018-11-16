@@ -47,7 +47,7 @@
     <string name="wifi_status_closing">WiFi closing</string>
     <string name="wifi_status_opening">WiFi opening</string>
     <string name="wifi_status_on">WiFi ON</string>
-    <string name="wifi_status_connected">WiFi connected:%s</string>
+    <string name="wifi_status_connected">WiFi connected</string>
     <string name="wifi_status_connecting">WiFi connecting</string>
     <string name="wifi_status_disconnected">WiFi disconnected</string>
     <string name="wifi_status_disconnecting">WiFi disconnecting</string>
@@ -59,8 +59,6 @@
         <item>Reboot</item>
     </string-array>
     <string name="power_title" translatable="false">现在可以操作电源了哦~</string>
-    <string name="oh_no">混淆有毛用啊，文件这么少,代码渣貌似也能增加难度,不想加固，加固有问题，大哥我这就署名有价值，反编译别把我名字去了- -</string>
-    <string name="come_on">给点赏钱吧，支付鸨就行，账号是邮箱</string>
     <string name="setting_help_and_about">Help &amp; About</string>
     <string name="path">Path</string>
     <string name="default_path_setting">Default Path</string>

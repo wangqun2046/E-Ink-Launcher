@@ -2,6 +2,7 @@
 
 buildscript {
     repositories {
+        maven { url 'http://nexus.mhs.local:8081/nexus/content/groups/public/' }
         google()
         jcenter()
     }
@@ -15,6 +16,7 @@ buildscript {
 
 allprojects {
     repositories {
+        maven { url 'http://nexus.mhs.local:8081/nexus/content/groups/public/' }
         google()
         jcenter()
     }

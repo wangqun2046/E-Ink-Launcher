@@ -10,7 +10,6 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Point;
 import android.net.Uri;
-import android.os.PowerManager;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -19,9 +18,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import info.wangqun.launcher.Launcher;
-import info.wangqun.launcher.R;
-import info.wangqun.launcher.model.ObservableFloat;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -29,12 +25,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import info.wangqun.launcher.R;
+import info.wangqun.launcher.model.ObservableFloat;
+
 import static android.view.View.MeasureSpec.EXACTLY;
 import static android.view.View.MeasureSpec.makeMeasureSpec;
 
-/**
- * Created by mod on 16-4-23.
- */
 public class EInkLauncherView extends ViewGroup {
     int ROW_NUM = 5;
     int COL_NUM = 5;
@@ -118,58 +114,7 @@ public class EInkLauncherView extends ViewGroup {
                 view.measure(makeMeasureSpec(getItemWidth(), EXACTLY),
                     makeMeasureSpec(getItemHeight(), EXACTLY));
                 view.layout(childLeft, childTop, childRight, childBottom);
-                if (COL_NUM * i + j >= dataList.size()) {
-                    if (COL_NUM * i + j == dataList.size()) {
-                        ((ImageView) view.findViewById(R.id.appImage)).setImageResource(R.drawable.ic_onekeylock);
-                        ((TextView) view.findViewById(R.id.appName)).setText(R.string.item_lockscreen);
-                        ((TextView) view.findViewById(R.id.appName)).setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize);
-                        observable.addObserver(((ObserverFontTextView) view.findViewById(R.id.appName)));
-                        view.setOnClickListener(new OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                ((Launcher) v.getContext()).lockScreen();
-                            }
-                        });
-                        view.setOnLongClickListener(new OnLongClickListener() {
-                            @Override
-                            public boolean onLongClick(View v) {
-                                if (!isSystemApp) return true;
-                                new AlertDialog.Builder(v.getContext())
-                                    .setTitle(R.string.power_title)
-                                    .setItems(R.array.power_menu, new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            if (which == 0) {
-                                                Intent intent = new Intent("android.intent.action.ACTION_REQUEST_SHUTDOWN");
-                                                intent.putExtra("android.intent.extra.KEY_CONFIRM", false);//true 确认是否关机
-                                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                                getContext().startActivity(intent);
-                                            } else {
-                                                PowerManager pManager = (PowerManager) getContext().getSystemService(Context.POWER_SERVICE);
-                                                pManager.reboot("重启");
-                                            }
-                                        }
-                                    })
-                                    .setPositiveButton("取消", null)
-                                    .show();
-                                return true;
-                            }
-                        });
-                    }
-                    if (COL_NUM * i + j < dataList.size() + 2) {
-                        if (hideDivider) {
-                            view.setBackgroundResource(R.drawable.app_item_final);
-                        } else if (j == COL_NUM - 1 && i == ROW_NUM - 1) {
-                            view.setBackgroundResource(R.drawable.app_item_final);
-                        } else if (j == COL_NUM - 1)
-                            view.setBackgroundResource(R.drawable.app_item_right);
-                        else if (i == ROW_NUM - 1)
-                            view.setBackgroundResource(R.drawable.app_item_bottom);
-                        else if (!hideDivider)
-                            view.setBackgroundResource(R.drawable.app_item_normal);
-                    }
-
-                } else if (hideDivider) {
+                if (hideDivider) {
                     view.setBackgroundResource(R.drawable.app_item_final);
                 } else if (j == COL_NUM - 1 && i == ROW_NUM - 1)
                     view.setBackgroundResource(R.drawable.app_item_final);
@@ -354,7 +299,6 @@ public class EInkLauncherView extends ViewGroup {
                     (event.getY() > touchDown.y && dragDistance < Math.abs(event.getY() - touchDown.y))) {
                     if (touchListener != null)
                         touchListener.toLast();
-//                    dataCenter.showLastPage();
                     return true;
                 }
                 if ((event.getX() < touchDown.x && dragDistance < Math.abs(event.getX() - touchDown.x)) ||
@@ -438,10 +382,6 @@ public class EInkLauncherView extends ViewGroup {
 
     public void setSystemApp(boolean systemApp) {
         isSystemApp = systemApp;
-    }
-
-    public boolean isSystemApp() {
-        return isSystemApp;
     }
 
     public void setOnSingleAppHideChangeListener(OnSingleAppHideChange onSingleAppHideChange) {

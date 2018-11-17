@@ -4,16 +4,11 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.widget.TextView;
-import androidx.annotation.Nullable;
 
 import java.util.Observable;
 import java.util.Observer;
 
-/**
- * Created by Modificator
- * time: 16/12/3.上午2:03
- * des:create file and achieve model
- */
+import androidx.annotation.Nullable;
 
 public class ObserverFontTextView extends TextView implements Observer {
     public ObserverFontTextView(Context context) {

@@ -1,23 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
-    signingConfigs {
-        config {
-            keyAlias "wangqun@app"
-            keyPassword "Wq181116"
-            storeFile file("~/Developer/wangqun.app.key")
-            storePassword "App181116"
-        }
-    }
     compileSdkVersion 28
     buildToolsVersion '28.0.3'
     defaultConfig {
-        applicationId "net.xinhuamm.mainclient"
-        minSdkVersion 21
+        applicationId "info.wangqun.launcher"
+        minSdkVersion 14
         targetSdkVersion 28
-        versionCode 1024
+        versionCode 15
         versionName "0.1.5"
-        signingConfig signingConfigs.config
     }
     buildTypes {
         release {
@@ -26,7 +17,6 @@ android {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.config
         }
     }
     lintOptions {

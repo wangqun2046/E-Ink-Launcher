@@ -4,16 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ResolveInfo;
 import android.widget.TextView;
-import info.wangqun.launcher.widgets.EInkLauncherView;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-/**
- * Created by mod on 16-4-22.
- */
+import info.wangqun.launcher.widgets.EInkLauncherView;
+
 public class AppDataCenter {
     Context mContext;
     private static List<ResolveInfo> mApps;

@@ -5,11 +5,9 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
+
 import info.wangqun.launcher.R;
 
-/**
- * Created by mod on 15-10-30.
- */
 public class RatioImageView extends ImageView {
 
     /**

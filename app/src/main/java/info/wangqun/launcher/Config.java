@@ -6,9 +6,6 @@ import android.content.SharedPreferences;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Created by mod on 16-4-23.
- */
 public class Config {
     Context context;
     //列数

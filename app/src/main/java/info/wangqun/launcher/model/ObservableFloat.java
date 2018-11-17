@@ -6,12 +6,6 @@ import android.os.Parcelable;
 import java.io.Serializable;
 import java.util.Observable;
 
-/**
- * Created by Modificator
- * time: 16/12/3.上午2:00
- * des:create file and achieve model
- */
-
 public class ObservableFloat extends Observable implements Parcelable, Serializable {
     static final long serialVersionUID = 1L;
     private float mValue;

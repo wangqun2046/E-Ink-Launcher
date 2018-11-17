@@ -1,8 +1,9 @@
 package info.wangqun.launcher;
 
-import android.app.admin.DeviceAdminReceiver;
-import android.app.admin.DevicePolicyManager;
-import android.content.*;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -15,19 +16,16 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.io.File;
+import java.util.Calendar;
+
 import androidx.fragment.app.FragmentActivity;
 import info.wangqun.launcher.model.AppDataCenter;
 import info.wangqun.launcher.widgets.BatteryView;
 import info.wangqun.launcher.widgets.EInkLauncherView;
 
-import java.io.File;
-import java.util.Calendar;
-
-/**
- * Created by mod on 16-4-22.
- */
 public class Launcher extends FragmentActivity {
-
     public static final String ROW_NUM_KEY = "rowNumKey";
     public static final String COL_NUM_KEY = "colNumKey";
     public static final String HIDE_APPS_KEY = "hideAppsKey";
@@ -47,7 +45,6 @@ public class Launcher extends FragmentActivity {
     BroadcastReceiver timeListener;
     Calendar mCalendar;
 
-    DevicePolicyManager policyManager;
     File iconFile;
     boolean isChina = true;
 
@@ -68,7 +65,6 @@ public class Launcher extends FragmentActivity {
 
 
     private void initView() {
-        policyManager = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
         launcherView = findViewById(R.id.mList);
         pageStatus = findViewById(R.id.pageStatus);
         batteryProgress = findViewById(R.id.batteryProgress);
@@ -209,15 +205,12 @@ public class Launcher extends FragmentActivity {
             mCalendar.setTimeInMillis(System.currentTimeMillis());
 
             StringBuilder timeFormatTextBuilder = new StringBuilder("yyyy-MM-dd ");
-            if (!is24Hour && isChina) {
-                timeFormatTextBuilder.append(Utils.getAMPMCNString(mCalendar.get(Calendar.HOUR), mCalendar.get(Calendar.AM_PM)));
-            }
             if (is24Hour) {
                 timeFormatTextBuilder.append("HH:mm");
             } else {
                 timeFormatTextBuilder.append("hh:mm");
             }
-            if (!is24Hour && !isChina) {
+            if (!is24Hour) {
                 timeFormatTextBuilder.append(" a");
             }
             timeFormatTextBuilder.append(" EEEE");
@@ -347,8 +340,8 @@ public class Launcher extends FragmentActivity {
 
     @Override
     public void onBackPressed() {
+        super.onBackPressed();
         if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
-            super.onBackPressed();
             config.saveFontSize();
         }
     }
@@ -359,29 +352,6 @@ public class Launcher extends FragmentActivity {
             return true;
         }
         return super.onKeyDown(keyCode, event);
-    }
-
-    public void lockScreen() {
-        if (policyManager.isAdminActive(new ComponentName(this, DeviceAdminReceiver.class))) {
-            policyManager.lockNow();
-        } else {
-            activeManage();
-        }
-    }
-
-    private void activeManage() {
-        Intent intent = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
-        intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, new ComponentName(this, DeviceAdminReceiver.class));
-        intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION, "E-Ink Launcher 获取锁屏权限");
-        startActivityForResult(intent, 10001);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 10001 && resultCode == RESULT_OK) {
-            policyManager.lockNow();
-        }
     }
 
     public boolean isSystemApp(PackageInfo pInfo) {
